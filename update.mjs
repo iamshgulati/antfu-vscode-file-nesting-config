@@ -125,6 +125,7 @@ const workspaces = [
   '.yarnrc*',
   'bower.json',
   'bun.lockb',
+  'bunfig.toml',
   'firebase.json',
   'lerna*',
   'npm-shrinkwrap.json',
@@ -265,6 +266,8 @@ let readme = [
   'HISTORY.MD',
   'LICENSE*',
   'MAINTAINERS',
+  'README_*',
+  'README-*',
   'RELEASE_NOTES*',
   'SECURITY.MD',
   'SPONSORS*',
@@ -403,6 +406,12 @@ const razor = [
   '$(capture).razor.cs',
 ]
 
+const sanity = [
+  'sanity.cli.*',
+  'sanity.types.ts',
+  'schema.json',
+]
+
 // @keep-sorted
 const base = {
   '.clang-tidy': '.clang-format, .clangd, compile_commands.json',
@@ -428,7 +437,7 @@ const base = {
   '*.go': '$(capture)_test.go',
   '*.java': '$(capture).class',
   '*.js': '$(capture).js.map, $(capture).*.js, $(capture)_*.js',
-  '*.jsx': '$(capture).js, $(capture).*.jsx, $(capture)_*.js, $(capture)_*.jsx, $(capture).less, $(capture).module.less',
+  '*.jsx': '$(capture).js, $(capture).*.jsx, $(capture)_*.js, $(capture)_*.jsx, $(capture).less, $(capture).module.less, $(capture).module.less.d.ts,  $(capture).scss, $(capture).module.scss, $(capture).module.scss.d.ts',
   '*.master': '$(capture).*.cs, $(capture).*.vb',
   '*.md': '$(capture).*',
   '*.mjs': '$(capture).mjs.map, $(capture).*.mjs, $(capture)_*.mjs',
@@ -438,10 +447,11 @@ const base = {
   '*.py': '$(capture).pyi',
   '*.resx': '$(capture).*.resx, $(capture).designer.cs, $(capture).designer.vb',
   '*.ts': '$(capture).js, $(capture).d.ts.map, $(capture).*.ts, $(capture)_*.js, $(capture)_*.ts',
-  '*.tsx': '$(capture).ts, $(capture).*.tsx, $(capture)_*.ts, $(capture)_*.tsx, $(capture).less, $(capture).module.less, $(capture).scss, $(capture).module.scss',
+  '*.tsx': '$(capture).ts, $(capture).*.tsx, $(capture)_*.ts, $(capture)_*.tsx, $(capture).less, $(capture).module.less, $(capture).module.less.d.ts, $(capture).scss, $(capture).module.scss, $(capture).module.scss.d.ts, $(capture).css.ts',
   '*.vue': '$(capture).*.ts, $(capture).*.js, $(capture).story.vue',
   '*.w': '$(capture).*.w, I$(capture).w',
   '*.xaml': '$(capture).xaml.cs',
+  'ansible.cfg': 'ansible.cfg, .ansible-lint, requirements.yml',
   'BUILD.bazel': '*.bzl, *.bazel, *.bazelrc, bazel.rc, .bazelignore, .bazelproject, WORKSPACE',
   'CMakeLists.txt': '*.cmake, *.cmake.in, .cmake-format.yaml, CMakePresets.json, CMakeCache.txt',
   'default.nix': 'shell.nix',
@@ -524,6 +534,7 @@ const full = sortObject({
   'deno.json*': stringify(denoRuntime),
   '*.db': stringify(sqlite),
   '*.razor': stringify(razor),
+  'sanity.config.*': stringify(sanity),
   ...Object.fromEntries(Object.entries(frameworks).map(([n, i]) => [n, stringify([...i, ...libraries])])),
   ...svelteKitRouting,
 }, (a, b) => {
